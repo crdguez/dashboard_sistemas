@@ -1,3 +1,5 @@
+from sympy import *
+
 def sistema_a_latex(sist) :
     """
     Convierte un sistema Sympy a código LaTeX
