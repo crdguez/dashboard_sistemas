@@ -40,6 +40,7 @@ def discusion_solucion(sist, k=k, resol=True) :
     Discute y resuelve un sistema con un parámetro o sin él
     """
     d=dict()
+    solucion_md=[]
     A, b = linear_eq_to_matrix(sist,[x,y,z])
     AA = A.row_join(b)
     AAs = AA.LUdecomposition()[1].applyfunc(nsimplify)
@@ -51,7 +52,7 @@ def discusion_solucion(sist, k=k, resol=True) :
 
     else :  
         pprint("Discusión y resolución por Gauss:")
-
+        solucion_md.append("Discusión y resolución por Gauss:")
         solucion_latex = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
         solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"\begin{itemize}"
@@ -160,4 +161,5 @@ def discusion_solucion(sist, k=k, resol=True) :
                 solucion_latex += r"\end{itemize}"
         solucion_latex += r"\end{itemize}"
     d['solucion_latex']=solucion_latex
+    d['solucion_markdown']=solucion_md
     return(d) 
