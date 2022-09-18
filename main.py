@@ -10,6 +10,8 @@ a, b, c, d, k = symbols('a b c d k', real = True)
 st.title("Resolución de Sistemas de 2º bachillerato")
 
 sist=[Eq(y+z,40),Eq(x,y+10),Eq(y-3*z,0)]
+st.write("Dado el sistema:")
+st.write(sistema_a_latex(sist))
 st.latex(latex(solve(sist)))
 
 st.write(sistema_a_latex(sist))
