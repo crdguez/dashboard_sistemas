@@ -1,6 +1,5 @@
 from sympy import *
 
-init_session()
 
 def sistema_a_latex(sist) :
     """
