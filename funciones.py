@@ -39,22 +39,22 @@ def discusion_solucion(sist, k=k, resol=True) :
     """
     Discute y resuelve un sistema con un parámetro o sin él
     """
-    
+    d=dict()
     A, b = linear_eq_to_matrix(sist,[x,y,z])
     AA = A.row_join(b)
     AAs = AA.LUdecomposition()[1].applyfunc(nsimplify)
     
     if A.rank() < AA.rank():
-        solucion = r"Como $rg(A)={} < rg(A^*)={} \to$ S.I. \\ ".format(A.rank(),AA.rank())
-        solucion += r"Ya que escalonando la matriz ampliada: \\ $A^*= {} \thicksim {}$ \\".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
-        solucion += r"${}={} \quad y \quad {}={}$".format(latex(AAs[:,:-1]),latex(A.det()),latex(AAs[:,1:]),latex(AAs[:,1:].det())).replace('[','|').replace(']','|')
+        solucion_latex = r"Como $rg(A)={} < rg(A^*)={} \to$ S.I. \\ ".format(A.rank(),AA.rank())
+        solucion_latex += r"Ya que escalonando la matriz ampliada: \\ $A^*= {} \thicksim {}$ \\".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
+        solucion_latex += r"${}={} \quad y \quad {}={}$".format(latex(AAs[:,:-1]),latex(A.det()),latex(AAs[:,1:]),latex(AAs[:,1:].det())).replace('[','|').replace(']','|')
 
     else :  
         pprint("Discusión y resolución por Gauss:")
 
-        solucion = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
-        solucion += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
-        solucion += r"\begin{itemize}"
+        solucion_latex = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
+        solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
+        solucion_latex += r"\begin{itemize}"
         pprint(AAs)
         pprint("det(A)={}".format(A.det()))
         pprint(AAs.row(-1)[-2:])
@@ -63,26 +63,26 @@ def discusion_solucion(sist, k=k, resol=True) :
             pprint(i)
             if AAs.row(-1)[-1].subs(k,i) == 0 :
                 pprint("Si {} = {} -->  0z=0 --> S.C.I".format(k,i))
-                solucion += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
+                solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 pprint([eq.subs(k,i) for eq in sist])
                 sol = list(zip([x,y,z],linsolve([eq.subs(k,i) for eq in sist],[x,y,z]).args[0],[r.subs(k,i) for r in [AAs.row(j) for j in range(AA.shape[0])]]))
                 pprint(sol)
                 for s in reversed(sol) :
                         pprint("{} --> {} = {}".format(s[2],s[0],s[1].subs(z,"\lambda")))
                         if resol :
-                            solucion += r"\begin{itemize}"
-                            solucion += r"\item ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
-                            solucion += r"\end{itemize}"
+                            solucion_latex += r"\begin{itemize}"
+                            solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
+                            solucion_latex += r"\end{itemize}"
             else :
                 pprint("Si {} = {} --> 0z={} -->S.I".format(k,i, AAs.row(-1)[-1].subs(k,i)))
-                solucion += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
+                solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
 
         if solve(AAs.row(-1)[-2]) :
             pprint("si {} <> {}  --> S.C.D.".format(k, solve(AAs.row(-1)[-2])))
-            solucion += r"\item si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+            solucion_latex += r"\item si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
-            solucion += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+            solucion_latex += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
 
 
         pprint(list(linsolve(sist,[x,y,z]).args[0].args))
@@ -91,25 +91,25 @@ def discusion_solucion(sist, k=k, resol=True) :
         if resol :
             for s in reversed(sol) :
                 pprint("{} --> {} = {}".format(s[2],s[0],s[1]))
-                solucion += r"\begin{itemize}"
-                solucion += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
-                solucion += r"\end{itemize}"
+                solucion_latex += r"\begin{itemize}"
+                solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
+                solucion_latex += r"\end{itemize}"
 
-        solucion += r"\end{itemize}  "
+        solucion_latex += r"\end{itemize}  "
 
         # Por rangos y determinantes
 
         pprint("Por rangos y determinantes:")
-        solucion += r"\textbf{Por rangos y determinantes:} \\"
+        solucion_latex += r"\textbf{Por rangos y determinantes:} \\"
 
 
         #Rango de A:
 
 
-        solucion += r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det())) 
+        solucion_latex += r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det())) 
         if solve(A.det()) :
-            solucion += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
-            solucion += r"\begin{itemize}"
+            solucion_latex += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
+            solucion_latex += r"\begin{itemize}"
             for i in solve(A.det()):
                 A2 = A.subs(k,i)
                 AA2 = AA.subs(k,i)
@@ -118,45 +118,46 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint(AA2.rank())
                 if A2.rank() < AA2.rank() :
                     pprint("Si {} = {} --> S.I.".format(k,i))
-                    solucion += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.I.".format(k,i,A2.rank(),AA2.rank())
+                    solucion_latex += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.I.".format(k,i,A2.rank(),AA2.rank())
                 else :
                     pprint("Si {} = {} --> S.C.I --> solo se puede resolver por Gauss, ver más arriba".format(k,i))
-                    solucion += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank())
+                    solucion_latex += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank())
 
             pprint("Si {} <> {} --> Rango(A)=Rango(A)={} --> S.C.D.".format(k,solve(A.det()),A.rank()))
-            solucion += r"\item Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
+            solucion_latex += r"\item Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
             if resol :
                 pprint("Por Cramer:")
                 sol=[]
-                solucion += r" \\ Por Cramer: \begin{itemize}"
+                solucion_latex += r" \\ Por Cramer: \begin{itemize}"
                 for i, var in enumerate([x,y,z]):
                     #print("columna"+latex(i))
                     AA.col_swap(i,3)
-                    pprint("Delta_i, A.det, solucion_i : ")
+                    pprint("Delta_i, A.det, solucion_latex_i : ")
                     sol.append([var,AA[:,:-1],simplify(AA[:,:-1].det()),simplify(A.det()),simplify(AA[:,:-1].det()/A.det())])
                     pprint(sol[i])
                     #print(r"$x_"+latex(i)+r"=\frac{"+latex(AA[:,:-1])+r"}{"+latex(A.det())+r"}=\frac{"+latex(AA[:,:-1].det())+r"}{"+latex(A.det())+r"}="+latex(AA[:,:-1].det()/A.det())+"$")
-                    solucion += r"\item $"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
+                    solucion_latex += r"\item $"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
                     AA.col_swap(i,3)
-                solucion += r"\end{itemize}"
+                solucion_latex += r"\end{itemize}"
 
         else:
-            solucion += r" \neq 0 $"
-            solucion += r"\begin{itemize}"
-            solucion += r" \item $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
+            solucion_latex += r" \neq 0 $"
+            solucion_latex += r"\begin{itemize}"
+            solucion_latex += r" \item $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
             if resol :
                 pprint("Por Cramer:")
                 sol=[]
-                solucion += r" \\ Por Cramer: \begin{itemize}"
+                solucion_latex += r" \\ Por Cramer: \begin{itemize}"
                 for i, var in enumerate([x,y,z]):
                     #print("columna"+latex(i))
                     AA.col_swap(i,3)
-                    pprint("Delta_i, A.det, solucion_i : ")
+                    pprint("Delta_i, A.det, solucion_latex_i : ")
                     sol.append([var,AA[:,:-1],simplify(AA[:,:-1].det()),simplify(A.det()),simplify(AA[:,:-1].det()/A.det())])
                     pprint(sol[i])
                     #print(r"$x_"+latex(i)+r"=\frac{"+latex(AA[:,:-1])+r"}{"+latex(A.det())+r"}=\frac{"+latex(AA[:,:-1].det())+r"}{"+latex(A.det())+r"}="+latex(AA[:,:-1].det()/A.det())+"$")
-                    solucion += r"\item $"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
+                    solucion_latex += r"\item $"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
                     AA.col_swap(i,3)
-                solucion += r"\end{itemize}"
-        solucion += r"\end{itemize}"
-    return(solucion) 
+                solucion_latex += r"\end{itemize}"
+        solucion_latex += r"\end{itemize}
+    d['solucion_latex']=solucion_latex
+    return(d) 
