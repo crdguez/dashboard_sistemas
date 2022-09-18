@@ -1,5 +1,9 @@
 from sympy import *
 
+x, y, z, t = symbols('x y z t')
+
+a, b, c, d, k = symbols('a b c d k', real = True)
+
 
 def sistema_a_latex(sist) :
     """
