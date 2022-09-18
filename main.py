@@ -1,6 +1,5 @@
 import streamlit as st
-import streamlit as st
-# from funciones import *
+from funciones import *
 from sympy import *
 
 x, y, z, t = symbols('x y z t')
