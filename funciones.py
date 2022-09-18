@@ -52,12 +52,14 @@ def discusion_solucion(sist, k=k, resol=True) :
 
     else :  
         pprint("Discusión y resolución por Gauss:")
-        solucion_md.append("Discusión y resolución por Gauss:")
+        solucion_md.append("**Discusión y resolución por Gauss:** Escalonando la matriz ampliada tenemos")
         solucion_latex = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
         solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"\begin{itemize}"
         pprint(AAs)
+        solucion_md.append("$"+latex(AAs)+"$")
         pprint("det(A)={}".format(A.det()))
+        solucion_md.append("$"+latex(AAs)+"$")
         pprint(AAs.row(-1)[-2:])
 
         for i in (solve(AAs.row(-1)[-2])) :
