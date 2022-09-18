@@ -16,7 +16,7 @@ st.write(sistema_a_latex(sist))
 
 
 # st.write(discusion_solucion(sist2, k=k, resol=True))
-st.write(discusion_solucion(sist, k=k, resol=True)['solucion_latex'])
+st.write(discusion_solucion(sist, k=k, resol=True)['solucion_markdown'])
 st.latex(discusion_solucion(sist, k=k, resol=True)['solucion_latex'])
 
 
