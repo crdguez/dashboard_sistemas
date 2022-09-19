@@ -68,7 +68,7 @@ def discusion_solucion(sist, k=k, resol=True) :
             pprint(i)
             if AAs.row(-1)[-1].subs(k,i) == 0 :
                 pprint("Si {} = {} -->  0z=0 --> S.C.I".format(k,i))
-#                 solucion_md.append(r"* Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')'))
+                solucion_md.append(r"* Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')'))
                 solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 pprint([eq.subs(k,i) for eq in sist])
                 sol = list(zip([x,y,z],linsolve([eq.subs(k,i) for eq in sist],[x,y,z]).args[0],[r.subs(k,i) for r in [AAs.row(j) for j in range(AA.shape[0])]]))
