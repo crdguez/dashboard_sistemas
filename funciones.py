@@ -57,9 +57,11 @@ def discusion_solucion(sist, k=k, resol=True) :
         solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"\begin{itemize}"
         pprint(AAs)
-        solucion_md.append("$"+latex(AA)+"\sim"+latex(AAs)+"$")
+        solucion_md.append("$"+latex(AA)+"\sim"+latex(AAs)+"\to $")
+        solucion_md.append(r"$A^*= {} \thicksim {}$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
+        solucion_md.append("De los valores de la última fila podemos concluir:")
         pprint("det(A)={}".format(A.det()))
-        solucion_md.append("$"+latex(AAs)+"$")
+        solucion_md.append("* a ver")
         pprint(AAs.row(-1)[-2:])
 
         for i in (solve(AAs.row(-1)[-2])) :
