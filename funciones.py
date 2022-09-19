@@ -124,11 +124,11 @@ def discusion_solucion(sist, k=k, resol=True) :
 
 
         solucion_latex += r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det()))
-        
-        solucion_md.append(r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det())))
+        txt_md= r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det()))"
+        solucion_md.append()
         if solve(A.det()) :
             solucion_latex += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
-            solucion_md.append(r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det()))))
+            txt_md += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
             solucion_latex += r"\begin{itemize}"
             for i in solve(A.det()):
                 A2 = A.subs(k,i)
@@ -139,14 +139,15 @@ def discusion_solucion(sist, k=k, resol=True) :
                 if A2.rank() < AA2.rank() :
                     pprint("Si {} = {} --> S.I.".format(k,i))
                     solucion_latex += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.I.".format(k,i,A2.rank(),AA2.rank())
-                    solucion_md.append(r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.I.".format(k,i,A2.rank(),AA2.rank()))
+                    txt_md += r"* Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.I.".format(k,i,A2.rank(),AA2.rank())
                 else :
                     pprint("Si {} = {} --> S.C.I --> solo se puede resolver por Gauss, ver más arriba".format(k,i))
-                    solucion_latex += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank())
-                    solucion_md.append("* Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank()))
+                    solucion_latex += r"\item Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank()
+                    txt_md += r" * Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank()))
             pprint("Si {} <> {} --> Rango(A)=Rango(A)={} --> S.C.D.".format(k,solve(A.det()),A.rank()))
             solucion_latex += r"\item Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
-            solucion_md.append(r"\item Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank()))
+            txt_md += r"* Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
+            solucion_md.append(txt_md)
 
             if resol :
                 pprint("Por Cramer:")
