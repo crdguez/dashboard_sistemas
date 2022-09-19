@@ -55,8 +55,7 @@ def discusion_solucion(sist, k=k, resol=True) :
         solucion_md.append("**Discusión y resolución por Gauss:** Escalonando la matriz ampliada tenemos")
         solucion_md.append(r"$A = {} \thicksim {}= A^*$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
         solucion_md.append("De los valores de la última fila podemos concluir:")
-        solucion_md.append("* a ver")
-
+ 
         solucion_latex = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
         solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"\begin{itemize}"
@@ -84,13 +83,17 @@ def discusion_solucion(sist, k=k, resol=True) :
             else :
                 pprint("Si {} = {} --> 0z={} -->S.I".format(k,i, AAs.row(-1)[-1].subs(k,i)))
                 solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
+                solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
 
         if solve(AAs.row(-1)[-2]) :
             pprint("si {} <> {}  --> S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+            solucion_md += r"* si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+            solucion_md += r"* S.C.D.".format(k,solve(AAs.row(-1)[-2]))
 
 
         pprint(list(linsolve(sist,[x,y,z]).args[0].args))
@@ -101,6 +104,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("{} --> {} = {}".format(s[2],s[0],s[1]))
                 solucion_latex += r"\begin{itemize}"
                 solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
+                solucion_md += r"* ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
