@@ -166,7 +166,7 @@ def discusion_solucion(sist, k=k, resol=True) :
 
         else:
             solucion_latex += r" \neq 0 $"
-            tx_md += r" \neq 0 $"
+            txt_md += r" \neq 0 $"
             solucion_latex += r"\begin{itemize}"
             solucion_latex += r" \item $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
             if resol :
