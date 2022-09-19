@@ -53,21 +53,23 @@ def discusion_solucion(sist, k=k, resol=True) :
     else :  
         pprint("Discusión y resolución por Gauss:")
         solucion_md.append("**Discusión y resolución por Gauss:** Escalonando la matriz ampliada tenemos")
+        solucion_md.append(r"$A = {} \thicksim {}= A^*$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
+        solucion_md.append("De los valores de la última fila podemos concluir:")
+        solucion_md.append("* a ver")
+
         solucion_latex = r"\textbf{Discusión y resolución por Gauss:} Escalonando la matriz ampliada tenemos\\"
         solucion_latex += r"$A^*= {} \thicksim {}$. \\  De los valores de la última fila podemos concluir:".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"\begin{itemize}"
         pprint(AAs)
-        solucion_md.append("$"+latex(AA)+"\sim"+latex(AAs)+"\to $")
-        solucion_md.append(r"$A^*= {} \thicksim {}$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
-        solucion_md.append("De los valores de la última fila podemos concluir:")
+                
         pprint("det(A)={}".format(A.det()))
-        solucion_md.append("* a ver")
         pprint(AAs.row(-1)[-2:])
 
         for i in (solve(AAs.row(-1)[-2])) :
             pprint(i)
             if AAs.row(-1)[-1].subs(k,i) == 0 :
                 pprint("Si {} = {} -->  0z=0 --> S.C.I".format(k,i))
+                solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 pprint([eq.subs(k,i) for eq in sist])
                 sol = list(zip([x,y,z],linsolve([eq.subs(k,i) for eq in sist],[x,y,z]).args[0],[r.subs(k,i) for r in [AAs.row(j) for j in range(AA.shape[0])]]))
@@ -76,6 +78,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                         pprint("{} --> {} = {}".format(s[2],s[0],s[1].subs(z,"\lambda")))
                         if resol :
                             solucion_latex += r"\begin{itemize}"
+                            solucion_md += r"* ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
                             solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
                             solucion_latex += r"\end{itemize}"
             else :
