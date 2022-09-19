@@ -169,7 +169,7 @@ def discusion_solucion(sist, k=k, resol=True) :
             txt_md += r" \neq 0 $"
             solucion_latex += r"\begin{itemize}"
             solucion_latex += r" \item $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
-            txt_md += r" * $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())"
+            txt_md += r" * $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
             if resol :
                 pprint("Por Cramer:")
                 sol=[]
