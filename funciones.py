@@ -93,7 +93,7 @@ def discusion_solucion(sist, k=k, resol=True) :
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
-            solucion_md += "SCD"
+            solucion_md.append("* SCD")
 
 
         pprint(list(linsolve(sist,[x,y,z]).args[0].args))
