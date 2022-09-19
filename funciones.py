@@ -166,6 +166,7 @@ def discusion_solucion(sist, k=k, resol=True) :
 
         else:
             solucion_latex += r" \neq 0 $"
+            tx_md += r" \neq 0 $"
             solucion_latex += r"\begin{itemize}"
             solucion_latex += r" \item $rg(A)={} \land rg(A^*)={} \to $ S.C.D.   \\".format(A.rank(),AA.rank())
             if resol :
@@ -183,6 +184,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                     AA.col_swap(i,3)
                 solucion_latex += r"\end{itemize}"
         solucion_latex += r"\end{itemize}"
+        solucion_md.append(txt_md)
     d['solucion_latex']=solucion_latex
     d['solucion_markdown']=solucion_md
     return(d) 
