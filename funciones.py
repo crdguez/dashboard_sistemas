@@ -125,7 +125,7 @@ def discusion_solucion(sist, k=k, resol=True) :
 
         solucion_latex += r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det()))
         txt_md= r"$\left|A\right|={}={} ".format(latex(A).replace("[","|").replace("]","|"),latex(A.det()))
-        solucion_md.append()
+        
         if solve(A.det()) :
             solucion_latex += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
             txt_md += r"\to \left|A\right|=0 \quad si \quad {} = {}$".format(k,latex(solve(A.det())))
