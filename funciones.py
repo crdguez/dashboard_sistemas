@@ -68,7 +68,7 @@ def discusion_solucion(sist, k=k, resol=True) :
             pprint(i)
             if AAs.row(-1)[-1].subs(k,i) == 0 :
                 pprint("Si {} = {} -->  0z=0 --> S.C.I".format(k,i))
-                solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
+#                 solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z=0 \to $ S.C.I".format(k,i,latex(AAs.subs(k,i))).replace('[','(').replace(']',')')
                 pprint([eq.subs(k,i) for eq in sist])
                 sol = list(zip([x,y,z],linsolve([eq.subs(k,i) for eq in sist],[x,y,z]).args[0],[r.subs(k,i) for r in [AAs.row(j) for j in range(AA.shape[0])]]))
@@ -77,23 +77,23 @@ def discusion_solucion(sist, k=k, resol=True) :
                         pprint("{} --> {} = {}".format(s[2],s[0],s[1].subs(z,"\lambda")))
                         if resol :
                             solucion_latex += r"\begin{itemize}"
-                            solucion_md += r"* ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
+#                             solucion_md += r"* ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
                             solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
                             solucion_latex += r"\end{itemize}"
             else :
                 pprint("Si {} = {} --> 0z={} -->S.I".format(k,i, AAs.row(-1)[-1].subs(k,i)))
                 solucion_latex += r"\item Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
-                solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
+#                 solucion_md += r"* Si ${} = {} \to$ $${}$$ La última fila es $0z={} \to $ S.I.".format(k,i,latex(AAs.subs(k,i)),AA.LUdecomposition()[1].applyfunc(simplify).row(-1)[-1].subs(k,i)).replace('[','(').replace(']',')')
 
         if solve(AAs.row(-1)[-2]) :
             pprint("si {} <> {}  --> S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
-            solucion_md += r"* Si ${}\neq {} $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+#             solucion_md += r"* Si ${}\neq {} $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
 
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
-            solucion_md += r" SCD".format(k,solve(AAs.row(-1)[-2]))
+            solucion_md += r"* SCD".format(k,solve(AAs.row(-1)[-2]))
 
 
         pprint(list(linsolve(sist,[x,y,z]).args[0].args))
