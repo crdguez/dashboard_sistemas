@@ -49,7 +49,11 @@ def discusion_solucion(sist, k=k, resol=True) :
         solucion_latex = r"Como $rg(A)={} < rg(A^*)={} \to$ S.I. \\ ".format(A.rank(),AA.rank())
         solucion_latex += r"Ya que escalonando la matriz ampliada: \\ $A^*= {} \thicksim {}$ \\".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')')
         solucion_latex += r"${}={} \quad y \quad {}={}$".format(latex(AAs[:,:-1]),latex(A.det()),latex(AAs[:,1:]),latex(AAs[:,1:].det())).replace('[','|').replace(']','|')
+        solucion_md.append(r"Como $rg(A)={} < rg(A^*)={} \to$ S.I. \\ ".format(A.rank(),AA.rank()))
+        solucion_md.append(r"Ya que escalonando la matriz ampliada: \\ $A^*= {} \thicksim {}$ \\".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
+        solucion_md.append(r"${}={} \quad y \quad {}={}$".format(latex(AAs[:,:-1]),latex(A.det()),latex(AAs[:,1:]),latex(AAs[:,1:].det())).replace('[','|').replace(']','|'))
 
+        
     else :  
         pprint("Discusión y resolución por Gauss:")
         solucion_md.append("**Discusión y resolución por Gauss:** Escalonando la matriz ampliada tenemos")
