@@ -88,7 +88,7 @@ def discusion_solucion(sist, k=k, resol=True) :
         if solve(AAs.row(-1)[-2]) :
             pprint("si {} <> {}  --> S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
-            solucion_md += r"* si ${}\neq {}  \to $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
+            solucion_md += r"* Si ${}\neq {} $ S.C.D.".format(k,solve(AAs.row(-1)[-2]))
 
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
