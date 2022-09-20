@@ -146,7 +146,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                     txt_md += r" * Si ${}={} \to rg(A)={} \land rg(A^*)={} \to $ S.C.I. $\to$ solo se puede resolver por Gauss, (ver más arriba)".format(k,i,A2.rank(),AA2.rank())
             pprint("Si {} <> {} --> Rango(A)=Rango(A)={} --> S.C.D.".format(k,solve(A.det()),A.rank()))
             solucion_latex += r"\item Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
-            txt_md += r"* Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
+            txt_md += r"  \n * Si ${} \neq{} \to rg(A)={} \land rg(A^*)={} \to $ S.C.D.  \\ ".format(k, solve(A.det()),A.rank(),AA.rank())
             solucion_md.append(txt_md)
 
             if resol :
