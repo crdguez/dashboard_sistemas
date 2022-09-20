@@ -108,7 +108,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("{} --> {} = {}".format(s[2],s[0],s[1]))
                 solucion_latex += r"\begin{itemize}"
                 solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
-                solucion_md.append(r"   \\t - ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
+                solucion_md.append("  \n    - ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
