@@ -81,7 +81,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                         pprint("{} --> {} = {}".format(s[2],s[0],s[1].subs(z,"\lambda")))
                         if resol :
                             solucion_latex += r"\begin{itemize}"
-                            solucion_md.append(r"* ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')'))
+                            solucion_md.append(r"    - ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')'))
                             solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),latex(s[0]),latex(s[1]).replace('z',"\lambda")).replace('[','(').replace(']',')')
                             solucion_latex += r"\end{itemize}"
             else :
@@ -108,7 +108,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("{} --> {} = {}".format(s[2],s[0],s[1]))
                 solucion_latex += r"\begin{itemize}"
                 solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
-                solucion_md.append(r"* ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
+                solucion_md.append("    - ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
