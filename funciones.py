@@ -56,7 +56,7 @@ def discusion_solucion(sist, k=k, resol=True) :
         
     else :  
         pprint("Discusión y resolución por Gauss:")
-        solucion_md.append("**Discusión y resolución por Gauss:** Escalonando la matriz ampliada tenemos")
+        solucion_md.append("**Discusión y resolución por Gauss:** \n Escalonando la matriz ampliada tenemos")
         solucion_md.append(r"$A = {} \thicksim {}= A^*$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
         solucion_md.append("De los valores de la última fila podemos concluir:")
  
