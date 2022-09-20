@@ -10,7 +10,7 @@ a, b, c, d, k = symbols('a b c d k', real = True)
 st.title("Resolución de Sistemas de 2º bachillerato")
 
 st.info("Escribe el sistema en formato sympy. **Ejemplo:** *[Eq(y+z,40),Eq(x,y+10),Eq(y-3*z,0)]*")
-sist=st.text_input("Sistema", value="[Eq(y+z,40),Eq(x,y+10),Eq(y-3*z,0)])")
+sist=st.text_input("Sistema", value="[Eq(y+z,40),Eq(x,y+10),Eq(y-3*z,0)]")
 
 st.write(sist)
 # sist=[Eq(y+z,40),Eq(x,y+10),Eq(y-3*z,0)]
