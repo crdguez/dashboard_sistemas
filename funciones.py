@@ -113,8 +113,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
-        solucion_md.append(txt_md)
-
+        
         # Por rangos y determinantes
 
         pprint("Por rangos y determinantes:")
