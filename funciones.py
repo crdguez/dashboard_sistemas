@@ -110,7 +110,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 solucion_latex += r"\begin{itemize}"
                 solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
                 solucion_md.append("                - ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
-                txt_md +="  \n              - ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
+                txt_md +="  \n              * ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
