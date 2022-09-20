@@ -183,7 +183,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                     pprint(sol[i])
                     #print(r"$x_"+latex(i)+r"=\frac{"+latex(AA[:,:-1])+r"}{"+latex(A.det())+r"}=\frac{"+latex(AA[:,:-1].det())+r"}{"+latex(A.det())+r"}="+latex(AA[:,:-1].det()/A.det())+"$")
                     solucion_latex += r"\item $"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
-                    txt_md += "   \n *"+"$"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
+                    txt_md += "   \n * "+"$"+latex(sol[i][0])+r"=\frac{"+latex(sol[i][1]).replace('[','|').replace(']','|')+r"}{"+latex(sol[i][3])+r"}=\frac{"+latex(sol[i][2])+r"}{"+latex(sol[i][3])+r"}="+latex(sol[i][4])+r"$"
 
                     AA.col_swap(i,3)
                 solucion_latex += r"\end{itemize}"
