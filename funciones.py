@@ -174,7 +174,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("Por Cramer:")
                 sol=[]
                 solucion_latex += r" \\ Por Cramer: \begin{itemize}"
-                txt_md += r"Por Cramer:"
+                txt_md += "\n"+r"Por Cramer:"
                 for i, var in enumerate([x,y,z]):
                     #print("columna"+latex(i))
                     AA.col_swap(i,3)
