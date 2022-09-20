@@ -97,8 +97,8 @@ def discusion_solucion(sist, k=k, resol=True) :
         else :
             pprint("S.C.D.".format(k, solve(AAs.row(-1)[-2])))
             solucion_latex += r"\item S.C.D.".format(k,solve(AAs.row(-1)[-2]))
-            solucion_md.append(r"* S.C.D.")
-            txt_md =r"* S.C.D."
+            solucion_md.append(r"S.C.D.")
+            
 
 
         pprint(list(linsolve(sist,[x,y,z]).args[0].args))
@@ -109,8 +109,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("{} --> {} = {}".format(s[2],s[0],s[1]))
                 solucion_latex += r"\begin{itemize}"
                 solucion_latex += r"\item ${} \to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
-                solucion_md.append(" ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
-                txt_md +="  \n              * ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')')
+                solucion_md.append(" * ${} \\to {} = {}$".format(latex(s[2]),s[0],latex(s[1])).replace('[','(').replace(']',')'))
                 solucion_latex += r"\end{itemize}"
 
         solucion_latex += r"\end{itemize}  "
