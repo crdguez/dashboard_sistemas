@@ -56,7 +56,8 @@ def discusion_solucion(sist, k=k, resol=True) :
         
     else :  
         pprint("Discusión y resolución por Gauss:")
-        solucion_md.append("**Discusión y resolución por Gauss:** \n Escalonando la matriz ampliada tenemos")
+        solucion_md.append("**Discusión y resolución por Gauss** ")
+        solucion_md.append("Escalonando la matriz ampliada tenemos:")
         solucion_md.append(r"$A = {} \thicksim {}= A^*$.".format(latex(AA),latex(AAs)).replace('[','(').replace(']',')'))
         solucion_md.append("De los valores de la última fila podemos concluir:")
  
@@ -118,7 +119,7 @@ def discusion_solucion(sist, k=k, resol=True) :
 
         pprint("Por rangos y determinantes:")
         solucion_latex += r"\textbf{Por rangos y determinantes:} \\"
-        solucion_md.append(r"**Por rangos y determinantes:**")
+        solucion_md.append(r"**Por rangos y determinantes**")
 
 
         #Rango de A:
@@ -175,7 +176,7 @@ def discusion_solucion(sist, k=k, resol=True) :
                 pprint("Por Cramer:")
                 sol=[]
                 solucion_latex += r" \\ Por Cramer: \begin{itemize}"
-                txt_md += "\n"+r"**Por Cramer:**"
+                txt_md += "\n"+r"**Por Cramer**"
                 for i, var in enumerate([x,y,z]):
                     #print("columna"+latex(i))
                     AA.col_swap(i,3)
