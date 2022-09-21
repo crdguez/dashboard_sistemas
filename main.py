@@ -25,6 +25,6 @@ for linea in discusion_solucion(sist, k=k, resol=True)['solucion_markdown'] :
   st.write(linea)
 
 # st.write(discusion_solucion(sist, k=k, resol=True)['solucion_markdown'])
+st.latex(r"Discute y resuelve el siguiente sistema:  \\ " + \
+         sistema_a_latex(sist))
 st.latex(discusion_solucion(sist, k=k, resol=True)['solucion_latex'])
-
-
